@@ -1,0 +1,32 @@
+def encrypt(text: list, n: int):
+    '''Функція з'єднує всі парні біти з непарними n разів
+    Якщо рядок порожній(0) - повертає значення(0)
+    Якщо n <= 0 - повертає вхідний рядок
+    '''
+    if len(text) == 0:
+        return 0
+    elif n <= 0:
+        return text
+    else:
+        while n > 0:
+            text = text[1::2] + text[::2]
+            n -= 1
+        return text
+
+
+def decrypt(encrypted_text: list, n: int):
+    '''Функція розшифровуэ зашифрований(n разів) код
+    Якщо рядок порожній(0) - повертає значення(0)
+    Якщо n <= 0 - повертає вхідний рядок
+    '''
+    half = len(encrypted_text)//2
+    if len(encrypted_text) == 0:
+        return 0
+    elif n <= 0:
+        return encrypted_text
+    else:
+        while n > 0:
+            encrypted_text = (encrypted_text[half::2] + encrypted_text[:half:2] +
+                              encrypted_text[half+1::2] + encrypted_text[1:half:2])
+            n -= 1
+        return encrypted_text
